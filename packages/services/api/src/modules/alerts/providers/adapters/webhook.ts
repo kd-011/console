@@ -30,6 +30,7 @@ export class WebhookCommunicationAdapter implements CommunicationAdapter {
       {
         endpoint: input.channel.webhookEndpoint!,
         event: input.event,
+        channelId: input.channel.id,
       },
       // Forwarded to the destination as Hive-Request-ID by the task.
       { requestId: getRequestId() },
