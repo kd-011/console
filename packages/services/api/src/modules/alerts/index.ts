@@ -5,6 +5,7 @@ import { DiscordCommunicationAdapter } from './providers/adapters/discord';
 import { TeamsCommunicationAdapter } from './providers/adapters/msteams';
 import { SlackCommunicationAdapter } from './providers/adapters/slack';
 import { WebhookCommunicationAdapter } from './providers/adapters/webhook';
+import { AlertChannelDeliveryReader } from './providers/alert-channel-delivery-reader';
 import { AlertChannelDeliveryRecorder } from './providers/alert-channel-delivery-recorder';
 import { AlertsManager } from './providers/alerts-manager';
 import { MetricAlertRulesManager } from './providers/metric-alert-rules-manager';
@@ -27,6 +28,7 @@ export const alertsModule = createModule({
     TeamsCommunicationAdapter,
     DiscordCommunicationAdapter,
     AlertChannelDeliveryRecorder,
+    AlertChannelDeliveryReader,
     ClickHouse,
   ],
 });

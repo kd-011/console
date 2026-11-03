@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { Inject, Injectable } from 'graphql-modules';
+import { formatDateTime } from '@hive/clickhouse';
 import { getRequestId } from '@hive/service-common';
 import { captureException } from '@sentry/node';
 import type { AlertChannel } from '../../../shared/entities';
@@ -94,7 +95,7 @@ export class AlertChannelDeliveryRecorder {
             , "metadata"
           )
           VALUES (
-            ${formatClickHouseDateTime(new Date())}
+            ${formatDateTime(new Date())}
             , ${attempt.organizationId}
             , ${attempt.channelId}
             , ${attempt.channelType}
@@ -211,8 +212,4 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function truncateStatusText(text: string): string {
   return text.length > MAX_STATUS_TEXT_LENGTH ? text.slice(0, MAX_STATUS_TEXT_LENGTH) : text;
-}
-
-function formatClickHouseDateTime(date: Date): string {
-  return date.toISOString().slice(0, 19).replace('T', ' ');
 }
